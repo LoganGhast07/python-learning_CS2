@@ -1,15 +1,5 @@
 #Problem 1: Employee Payroll System with Polymorphism
-#Create an employee payroll system using abstract base classes and polymorphism. Different employee types calculate pay differently.
-#Part A: Abstract Employee Class (15 points)
-#Create an abstract Employee class with:
-#1. Constructor that takes name and employee_id
-#2. Abstract method calculate_pay() — each subclass computes pay differently
-#3. Abstract method description() — returns a one-line summary of the employee
-#4. Regular method pay_stub() that returns: "[name] (ID: [employee_id]): $[pay]" (calls
-#   calculate_pay() internally — this is polymorphism!)
-#5. Static method validate_positive(value, name) that:
-#   Returns True if value > 0
-#   Raises ValueError with message "[name] must be positive!" otherwise
+
 
 class Employee:
     def __init__(self, name, employee_id):
@@ -33,24 +23,9 @@ class Employee:
         else:
             raise ValueError(f"{name} must be positive!")
 
-#Part B: Concrete Employee Classes (25 points)
-#Create three classes that inherit from Employee:
-#SalariedEmployee:
-##Constructor takes: name, employee_id, annual_salary
-#Validate salary is positive using the static method
-#calculate_pay() returns annual_salary / 24 (paid twice per month)
-#description() returns "Salaried: [name]"
-#HourlyEmployee:
-##Constructor takes: name, employee_id, hourly_rate, hours_worked
-#Validate rate and hours are positive
-#calculate_pay() returns hourly_rate * hours_worked for the first 40 hours, plus hourly_rate *
-#1.5 * overtime_hours for any hours beyond 40
-#description() returns "Hourly: [name]"
-#CommissionEmployee:
-##Constructor takes: name, employee_id, base_salary, sales, commission_rate
-#Validate all values are positive; commission_rate must also be ≤ 1.0
-#calculate_pay() returns base_salary + (sales * commission_rate)
-#description() returns "Commission: [name]"
+
+
+
 class SalariedEmployee(Employee):
     def __init__(self, name, employee_id, annual_salary):
         super().__init__(name, employee_id)
@@ -99,13 +74,8 @@ class CommissionEmployee(Employee):
     def description(self):
         return f"Commission: {self.name}"
 
-#Part C: Payroll Class (10 points)
-#Create a Payroll class that:
-#1. Stores a list of employees
-#2. Method add_employee(employee) to add an employee
-#3. Method total_payroll() that returns the sum of all employee pay
-#4. Method print_all_stubs() that prints every employee's pay stub
-#5. Uses polymorphism — doesn't care what type of employee!
+
+
 
 class Payroll:
     def __init__(self):
